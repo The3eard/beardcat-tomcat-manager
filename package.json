@@ -3,7 +3,7 @@
   "displayName": "BeardCat — Tomcat Manager",
   "description": "The easy way to run and debug local Apache Tomcat from VS Code. Add a Tomcat install, pick your WAR or exploded deployment, and hit Run or Debug — no fiddly setup, IntelliJ-style and beginner-friendly. Each configuration runs in its own isolated CATALINA_BASE, so your shared install is never touched. Includes Hot Code Replace while debugging, a one-click Reload that recompiles only changed classes (no full build), and every Tomcat log streamed straight to the Output panel.",
   "version": "0.1.2",
-  "publisher": "beardcat",
+  "publisher": "The3eard",
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
