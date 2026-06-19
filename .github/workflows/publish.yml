@@ -1,0 +1,28 @@
+name: Publish extension
+
+# Publishes to the VS Code Marketplace when you push a version tag, e.g.:
+#   git tag v0.1.2 && git push origin v0.1.2
+#
+# Requires a repository secret VSCE_PAT (Azure DevOps PAT with Marketplace > Manage).
+# Add it at: Settings → Secrets and variables → Actions → New repository secret.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run check-types
+      - name: Publish to Marketplace
+        run: npx @vscode/vsce publish --no-dependencies
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
