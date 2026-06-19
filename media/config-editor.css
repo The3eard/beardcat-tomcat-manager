@@ -1,0 +1,201 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-foreground);
+  background-color: var(--vscode-editor-background);
+  padding: 0 16px 80px;
+  margin: 0;
+}
+
+.topbar {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.name-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  background: var(--vscode-input-background);
+  color: var(--vscode-input-foreground);
+  border: 1px solid var(--vscode-input-border, transparent);
+  border-radius: 3px;
+  padding: 4px 6px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input[type="number"] {
+  width: 90px;
+}
+
+.grow {
+  flex: 1;
+  min-width: 120px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin: 12px 0;
+  border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--vscode-foreground);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-bottom-color: var(--vscode-focusBorder);
+  font-weight: 600;
+}
+
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.row > label {
+  flex: 0 0 160px;
+  text-align: right;
+  color: var(--vscode-descriptionForeground);
+}
+
+.row > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.browse {
+  display: flex;
+  gap: 6px;
+}
+
+fieldset {
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: 4px;
+  margin: 16px 0;
+  padding: 8px 12px 12px;
+}
+
+legend {
+  color: var(--vscode-descriptionForeground);
+  padding: 0 6px;
+}
+
+.hint {
+  color: var(--vscode-descriptionForeground);
+  font-size: 0.9em;
+}
+
+button {
+  background: var(--vscode-button-secondaryBackground);
+  color: var(--vscode-button-secondaryForeground);
+  border: none;
+  border-radius: 3px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button.primary,
+button#apply,
+button#ok {
+  background: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+.browse-btn {
+  padding: 4px 8px;
+}
+
+.actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--vscode-editor-background);
+  border-top: 1px solid var(--vscode-panel-border);
+}
+
+.help-box {
+  background: var(--vscode-textBlockQuote-background, rgba(127, 127, 127, 0.1));
+  border-left: 3px solid var(--vscode-textLink-foreground);
+  border-radius: 3px;
+  padding: 8px 14px;
+  margin: 8px 0 16px;
+  font-size: 0.92em;
+}
+
+.help-box ul {
+  margin: 6px 0 2px;
+  padding-left: 18px;
+}
+
+.help-box li {
+  margin: 4px 0;
+}
+
+.help-box code {
+  background: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.18));
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.field-hint {
+  flex-basis: 100%;
+  margin: 2px 0 0 132px;
+  color: var(--vscode-descriptionForeground);
+  font-size: 0.86em;
+}
+
+.deployment {
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.deployment .row > label {
+  flex-basis: 120px;
+}
+
+.deployment .remove {
+  float: right;
+}

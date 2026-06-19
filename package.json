@@ -1,0 +1,258 @@
+{
+  "name": "beardcat-tomcat-manager",
+  "displayName": "BeardCat — Tomcat Manager",
+  "description": "The easy way to run and debug local Apache Tomcat from VS Code. Add a Tomcat install, pick your WAR or exploded deployment, and hit Run or Debug — no fiddly setup, IntelliJ-style and beginner-friendly. Each configuration runs in its own isolated CATALINA_BASE, so your shared install is never touched. Includes Hot Code Replace while debugging, a one-click Reload that recompiles only changed classes (no full build), and every Tomcat log streamed straight to the Output panel.",
+  "version": "0.1.2",
+  "publisher": "beardcat",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Debuggers"
+  ],
+  "keywords": [
+    "tomcat",
+    "java",
+    "servlet",
+    "war",
+    "server",
+    "debug",
+    "jakarta",
+    "catalina"
+  ],
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/The3eard/beardcat-tomcat-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/The3eard/beardcat-tomcat-manager/issues"
+  },
+  "homepage": "https://github.com/The3eard/beardcat-tomcat-manager#readme",
+  "activationEvents": [
+    "onView:beardcat.servers",
+    "workspaceContains:**/pom.xml"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "beardcat",
+          "title": "Tomcat Servers",
+          "icon": "media/cat.svg"
+        }
+      ]
+    },
+    "views": {
+      "beardcat": [
+        {
+          "id": "beardcat.servers",
+          "name": "Tomcat Servers",
+          "icon": "media/cat.svg",
+          "contextualTitle": "Tomcat Servers"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "beardcat.servers",
+        "contents": "No Tomcat run configurations yet.\n[Add Configuration](command:beardcat.addConfig)\nFirst, register a Tomcat installation.\n[Add Tomcat Installation](command:beardcat.addServer)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "beardcat.addConfig",
+        "title": "Add Configuration",
+        "category": "Tomcat",
+        "icon": "$(add)"
+      },
+      {
+        "command": "beardcat.addServer",
+        "title": "Add Tomcat Installation",
+        "category": "Tomcat",
+        "icon": "$(server-environment)"
+      },
+      {
+        "command": "beardcat.manageInstallations",
+        "title": "Manage Tomcat Installations",
+        "category": "Tomcat",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "beardcat.editConfig",
+        "title": "Edit Configuration",
+        "category": "Tomcat",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "beardcat.deleteConfig",
+        "title": "Delete Configuration",
+        "category": "Tomcat",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "beardcat.run",
+        "title": "Run",
+        "category": "Tomcat",
+        "icon": "$(play)"
+      },
+      {
+        "command": "beardcat.debug",
+        "title": "Debug",
+        "category": "Tomcat",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "beardcat.stop",
+        "title": "Stop",
+        "category": "Tomcat",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "beardcat.restart",
+        "title": "Restart",
+        "category": "Tomcat",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "beardcat.redeploy",
+        "title": "Reload (recompile changed classes, no full build)",
+        "category": "Tomcat",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "beardcat.openBrowser",
+        "title": "Open in Browser",
+        "category": "Tomcat",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "beardcat.showLogs",
+        "title": "Show Logs",
+        "category": "Tomcat",
+        "icon": "$(output)"
+      },
+      {
+        "command": "beardcat.refresh",
+        "title": "Refresh",
+        "category": "Tomcat",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "beardcat.addConfig",
+          "when": "view == beardcat.servers",
+          "group": "navigation@1"
+        },
+        {
+          "command": "beardcat.addServer",
+          "when": "view == beardcat.servers",
+          "group": "navigation@2"
+        },
+        {
+          "command": "beardcat.refresh",
+          "when": "view == beardcat.servers",
+          "group": "navigation@3"
+        },
+        {
+          "command": "beardcat.manageInstallations",
+          "when": "view == beardcat.servers",
+          "group": "overflow@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "beardcat.run",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\.stopped/",
+          "group": "inline@1"
+        },
+        {
+          "command": "beardcat.debug",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\.stopped/",
+          "group": "inline@2"
+        },
+        {
+          "command": "beardcat.stop",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\.(running|debugging)/",
+          "group": "inline@1"
+        },
+        {
+          "command": "beardcat.restart",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\.(running|debugging)/",
+          "group": "inline@2"
+        },
+        {
+          "command": "beardcat.redeploy",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\.(running|debugging)/",
+          "group": "inline@3"
+        },
+        {
+          "command": "beardcat.openBrowser",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\./",
+          "group": "actions@1"
+        },
+        {
+          "command": "beardcat.showLogs",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\./",
+          "group": "actions@2"
+        },
+        {
+          "command": "beardcat.editConfig",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\./",
+          "group": "actions@3"
+        },
+        {
+          "command": "beardcat.deleteConfig",
+          "when": "view == beardcat.servers && viewItem =~ /^config\\./",
+          "group": "danger@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "BeardCat Tomcat Manager",
+      "properties": {
+        "beardcat.mvnPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the Maven executable. Leave empty to use 'mvn' from PATH."
+        },
+        "beardcat.defaultJrePath": {
+          "type": "string",
+          "default": "",
+          "description": "Default JAVA_HOME used to launch Tomcat when a configuration does not override it. Leave empty to use JAVA_HOME / the system default."
+        },
+        "beardcat.shutdownPortBase": {
+          "type": "number",
+          "default": 8005,
+          "description": "Base shutdown port. Each running configuration derives a unique shutdown port from this value."
+        },
+        "beardcat.debugPortBase": {
+          "type": "number",
+          "default": 8000,
+          "description": "Base JDWP debug port. Each debugged configuration derives a unique debug port from this value."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "test": "node esbuild.js && node ./out/test/runTest.js"
+  },
+  "extensionPack": [],
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  }
+}
